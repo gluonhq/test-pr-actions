@@ -14,10 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Comment on opened PR
-        if: github.event_name == 'pull_request_target' && github.event.action == 'opened'
+        if: github.event_name == 'pull_request_target' && github.event.action != 'closed'
         uses: actions/github-script@v3
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
