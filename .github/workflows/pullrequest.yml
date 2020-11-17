@@ -17,10 +17,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Comment on opened PR
-          if: github.event_name == 'pull_request_target' && github.event.action == 'opened'
-          uses: unsplash/comment-on-pr@master
-          with:
-            msg: "This is a test comment"
-          env:
-            PR_NUMBER: ${{ github.event.number }}
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: github.event_name == 'pull_request_target' && github.event.action == 'opened'
+        uses: unsplash/comment-on-pr@master
+        with:
+          msg: "This is a test comment"
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
