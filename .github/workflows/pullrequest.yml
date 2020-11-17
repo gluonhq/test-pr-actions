@@ -1,0 +1,17 @@
+name: Preview for PR
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - master
+
+jobs:
+  build:
+    if: github.event_name == 'pull_request_target' && github.event.action != 'closed'
+    name: Create preview for PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
